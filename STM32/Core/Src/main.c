@@ -22,6 +22,8 @@
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 #include "string.h"
+
+#include "ESP_func.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -31,7 +33,8 @@
 
 /* Private define ------------------------------------------------------------*/
 /* USER CODE BEGIN PD */
-
+#define WIFI_uart &huart1;
+#define PC_uart &huart2;
 /* USER CODE END PD */
 
 /* Private macro -------------------------------------------------------------*/
@@ -40,8 +43,8 @@
 /* USER CODE END PM */
 
 /* Private variables ---------------------------------------------------------*/
-UART_HandleTypeDef huart1;
-UART_HandleTypeDef huart2;
+UART_HandleTypeDef huart1; // WIFI
+UART_HandleTypeDef huart2; // Connected PC
 
 /* USER CODE BEGIN PV */
 
@@ -96,6 +99,7 @@ int main(void)
 
   // ESP UART communication test
   // TODO remove
+
   char received[255];
 
   HAL_UART_Transmit(&huart1, (uint8_t*)"AT\r\n", strlen("AT\r\n"), HAL_MAX_DELAY);
